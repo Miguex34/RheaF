@@ -15,36 +15,20 @@ const Register = () => {
     cargo: 'Dueño',
   });
 
-  const [suggestions, setSuggestions] = useState([]);
   const [errors, setErrors] = useState({});
   const [responseMessage, setResponseMessage] = useState('');
   const navigate = useNavigate();
 
   // Función para buscar direcciones en Nominatim
-  const searchAddress = async (query) => {
-    try {
-      const response = await fetch(`https://rheaf-production.up.railway.app/api/address?query=${encodeURIComponent(query)}`);
-      const data = await response.json();
-      setSuggestions(data);
-    } catch (error) {
-      console.error('Error al buscar dirección:', error);
-    }
-  };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Buscar direcciones solo si el campo de dirección cambia y tiene al menos 3 caracteres
-    if (name === 'direccionNegocio' && value.length > 2) {
-      searchAddress(value);
-    }
   };
 
-  const handleSuggestionClick = (suggestion) => {
-    setFormData({ ...formData, direccionNegocio: suggestion.display_name });
-    setSuggestions([]); // Limpia las sugerencias al seleccionar una
-  };
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -178,19 +162,6 @@ const Register = () => {
                 onChange={handleChange}
                 className="w-full p-3 border rounded-md focus:ring-2 focus:ring-purple-500"
               />
-              {suggestions.length > 0 && (
-                <ul className="border border-gray-300 rounded-md mt-2 bg-white max-h-48 overflow-y-auto">
-                  {suggestions.map((suggestion, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                      className="p-2 hover:bg-gray-100 cursor-pointer"
-                    >
-                      {suggestion.display_name}
-                    </li>
-                  ))}
-                </ul>
-              )}
               {errors.direccionNegocio && <p className="text-red-500">{errors.direccionNegocio}</p>}
 
               <input
