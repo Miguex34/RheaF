@@ -52,7 +52,7 @@ const Servicios = () => {
         localStorage.removeItem('token');
         navigate('/login');
       });
-  }, [navigate]);
+  }, [navigate, setUser, setForm, cargarServicios, cargarEmpleados]);
 
   const cargarServicios = async (id_negocio) => {
     const token = localStorage.getItem('token');

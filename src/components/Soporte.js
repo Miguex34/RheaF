@@ -50,12 +50,6 @@ const FormularioSoporte = () => {
         formDataToSend.append('imagen', formData.imagen);
       }
 
-      const response = await axios.post('http://localhost:5000/api/soportes/crear', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
 
       setMensaje('Ticket creado exitosamente.');
       fetchTickets();

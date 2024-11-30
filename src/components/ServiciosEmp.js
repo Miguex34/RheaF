@@ -5,24 +5,23 @@ const ServiciosEmp = () => {
   const [servicios, setServicios] = useState([]);
   const [setUser] = useState(null);
 
-  useEffect(() => {
-    // Verificar si el usuario tiene un token válido y obtener la información del usuario
-    const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = '/login';
-      return;
-    }
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = '/login';
+    return;
+  }
 
-    // Obtener el usuario desde el localStorage
-    const storedUser = JSON.parse(localStorage.getItem('usuario'));
-    if (storedUser && storedUser.cargo === 'Empleado') {
-      setUser(storedUser);
-      cargarServiciosEmpleado(storedUser.id);
-    } else {
-      console.warn("Usuario no autorizado o datos no encontrados.");
-      window.location.href = '/login';
-    }
-  }, []);
+  const storedUser = JSON.parse(localStorage.getItem('usuario'));
+  if (storedUser && storedUser.cargo === 'Empleado') {
+    setUser(storedUser);
+    cargarServiciosEmpleado(storedUser.id);
+  } else {
+    console.warn("Usuario no autorizado o datos no encontrados.");
+    window.location.href = '/login';
+  }
+}, []);
 
   const cargarServiciosEmpleado = async (idEmpleado) => {
     try {
