@@ -6,9 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const EmpleadoNegocio = require('../models/EmpleadoNegocio');
 const DisponibilidadEmpleado = require('../models/DisponibilidadEmpleado');
-const path = require('path');
-const db = require('../config/database');
-const dayjs = require('dayjs');
+
 
 
 // Función para registrar un usuario y crear su negocio
