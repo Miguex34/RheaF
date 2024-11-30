@@ -13,7 +13,7 @@ const ProfesionalEspecifico = ({ negocioId, servicioId }) => {
     const [negocioNombre, setNegocioNombre] = useState('');
     const [servicioNombre, setServicioNombre] = useState('');
     // eslint-disable-next-line no-unused-vars
-    const [loading, setLoading] = useState(false);
+    const [ setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {

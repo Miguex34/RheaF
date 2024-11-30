@@ -5,7 +5,6 @@ import { format, parse, startOfWeek, getDay, parseISO } from 'date-fns';
 import es from 'date-fns/locale/es';
 import Modal from 'react-modal';
 import axios from 'axios';
-import moment from 'moment';
 
 const locales = {
   es: es,

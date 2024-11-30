@@ -7,7 +7,7 @@ const CuentaCliente = ({ isOpen, closeModal, user, fetchUser }) => {
   const [activeTab, setActiveTab] = useState('personal');
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [formData, setFormData] = useState({
     email_cliente: '',
     celular_cliente: '',

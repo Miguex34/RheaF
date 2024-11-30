@@ -19,7 +19,7 @@ const Servicios = () => {
   const [empleados, setEmpleados] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const navigate = useNavigate();
-  const [user, setUser] = useState({ nombre: '', correo: '', id_negocio: null });
+  const [ setUser] = useState({ nombre: '', correo: '', id_negocio: null });
 
   useEffect(() => {
     const token = localStorage.getItem('token');

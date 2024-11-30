@@ -22,7 +22,7 @@ const VistaCliente = () => {
   const [auth, setAuth] = useState(!!localStorage.getItem('token'));
   const [modalOpen, setModalOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const [history, setHistory] = useState([]);
+  const [history] = useState([]);
   const [negocios, setNegocios] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
 
