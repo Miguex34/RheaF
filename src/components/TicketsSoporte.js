@@ -25,7 +25,7 @@ const TicketsSoporte = () => {
         return;
       }
 
-      const response = await axios.get('http://rheaf-production.up.railway.app/api/soportes/todos', {
+      const response = await axios.get('https://rheaf-production.up.railway.app/api/soportes/todos', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -74,7 +74,7 @@ const TicketsSoporte = () => {
       }
 
       await axios.put(
-        `http://rheaf-production.up.railway.app/api/soportes/${ticketId}/estado`,
+        `https://rheaf-production.up.railway.app/api/soportes/${ticketId}/estado`,
         { estado: nuevoEstado, respuesta },
         {
           headers: { Authorization: `Bearer ${token}` },

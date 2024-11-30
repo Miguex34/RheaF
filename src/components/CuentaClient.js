@@ -26,7 +26,7 @@ const CuentaCliente = ({ isOpen, closeModal, user, fetchUser }) => {
         setLoading(true);
       const token = localStorage.getItem('token');
       await axios.put(
-        'http://rheaf-production.up.railway.app/api/clientes/me',
+        'https://rheaf-production.up.railway.app/api/clientes/me',
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -70,7 +70,7 @@ const CuentaCliente = ({ isOpen, closeModal, user, fetchUser }) => {
   
       try {
         const response = await axios.get(
-          `http://rheaf-production.up.railway.app/api/clientes/historial/${user.id}`,
+          `https://rheaf-production.up.railway.app/api/clientes/historial/${user.id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
   

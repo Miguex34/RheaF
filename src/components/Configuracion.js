@@ -23,7 +23,7 @@ const Configuracion = () => {
   const fetchUserData = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('http://rheaf-production.up.railway.app/api/users/me', {
+      const response = await axios.get('https://rheaf-production.up.railway.app/api/users/me', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFormData((prevData) => ({
@@ -93,7 +93,7 @@ const Configuracion = () => {
         updateData.nuevaContraseña = formData.nuevaContraseña;
       }
 
-      await axios.put('http://rheaf-production.up.railway.app/api/users/update', updateData, {
+      await axios.put('https://rheaf-production.up.railway.app/api/users/update', updateData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -119,7 +119,7 @@ const Configuracion = () => {
     formData.append('profileImage', profileImage);
 
     try {
-      const response = await axios.post('http://rheaf-production.up.railway.app/api/users/upload-profile-image', formData, {
+      const response = await axios.post('https://rheaf-production.up.railway.app/api/users/upload-profile-image', formData, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

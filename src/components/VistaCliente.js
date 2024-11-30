@@ -31,7 +31,7 @@ const VistaCliente = () => {
     const fetchData = async () => {
       try {
         // Obtener el negocio por su nombre
-        const responseNegocio = await axios.get(`http://rheaf-production.up.railway.app/api/negocios/${nombre}`);
+        const responseNegocio = await axios.get(`https://rheaf-production.up.railway.app/api/negocios/${nombre}`);
         setNegocio(responseNegocio.data);
 
         // Guardar `negocioId` en `sessionStorage` para uso en otros componentes
@@ -44,8 +44,8 @@ const VistaCliente = () => {
 
         // Realizar las solicitudes de servicios y horarios en paralelo
         const [responseServicios, responseHorarios] = await Promise.all([
-          axios.get(`http://rheaf-production.up.railway.app/api/servicios/negocio/${negocioId}`),
-          axios.get(`http://rheaf-production.up.railway.app/api/horarios/negocio/${negocioId}`)
+          axios.get(`https://rheaf-production.up.railway.app/api/servicios/negocio/${negocioId}`),
+          axios.get(`https://rheaf-production.up.railway.app/api/horarios/negocio/${negocioId}`)
         ]);
 
         // Establecer los servicios y horarios en el estado
@@ -103,7 +103,7 @@ const VistaCliente = () => {
         setAuth(true); // Usuario autenticado
         try {
           // Solo realiza la solicitud al servidor si el usuario no está en localStorage
-          const response = await axios.get('http://rheaf-production.up.railway.app/api/clientes/me', {
+          const response = await axios.get('https://rheaf-production.up.railway.app/api/clientes/me', {
             headers: { Authorization: `Bearer ${token}` },
           });
   
@@ -145,7 +145,7 @@ const VistaCliente = () => {
   useEffect(() => {
     const fetchNegocios = async () => {
       try {
-        const response = await axios.get('http://rheaf-production.up.railway.app/api/negocios/completos');
+        const response = await axios.get('https://rheaf-production.up.railway.app/api/negocios/completos');
         const negociosFiltrados = response.data.filter(negocio => 
           negocio.nombre && negocio.telefono && negocio.direccion && negocio.categoria
         );

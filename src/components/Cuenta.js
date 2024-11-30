@@ -52,7 +52,7 @@ const Cuenta = () => {
     const fetchDisponibilidad = async (id_usuario) => {
       try {
         const response = await axios.get(
-          `http://rheaf-production.up.railway.app/api/users/disponibilidad/${id_usuario}`,
+          `https://rheaf-production.up.railway.app/api/users/disponibilidad/${id_usuario}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -90,7 +90,7 @@ const Cuenta = () => {
     const checkEmpleadoStatus = async (id_usuario) => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users/empleado/${id_usuario}`,
+          `https://rheaf-production.up.railway.app/api/users/empleado/${id_usuario}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -108,7 +108,7 @@ const Cuenta = () => {
     };
   
     axios
-      .get('http://localhost:5000/api/users/me', {
+      .get('https://rheaf-production.up.railway.app/api/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -144,7 +144,7 @@ const Cuenta = () => {
   // Función para obtener los horarios desde el backend
   const fetchHorarios = async (id_negocio) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/horarios/negocio/${id_negocio}`);
+      const response = await axios.get(`https://rheaf-production.up.railway.app/api/horarios/negocio/${id_negocio}`);
 
       // Asegúrate de que la respuesta es un array
       const fetchedHorarios = Array.isArray(response.data) ? response.data.map(horario => ({
@@ -213,7 +213,7 @@ const Cuenta = () => {
   
       // Enviar la categoría al backend
       await axios.put(
-        `http://localhost:5000/api/negocios/${user.negocio.id}/categoria`,
+        `https://rheaf-production.up.railway.app/api/negocios/${user.negocio.id}/categoria`,
         { categoria: nuevaCategoria },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -255,7 +255,7 @@ if (!descripcionRegex.test(descripcion)) {
         return;
       }
   
-      const response = await axios.put(`http://localhost:5000/api/negocios/${user.negocio.id}`, formData, {
+      const response = await axios.put(`https://rheaf-production.up.railway.app/api/negocios/${user.negocio.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
@@ -302,7 +302,7 @@ if (!descripcionRegex.test(descripcion)) {
       }));
 
       const response = await axios.put(
-        `http://localhost:5000/api/horarios/negocio/${user.negocio.id}`,
+        `https://rheaf-production.up.railway.app/api/horarios/negocio/${user.negocio.id}`,
         { horario: horariosFormateados },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -342,7 +342,7 @@ if (!descripcionRegex.test(descripcion)) {
       // Registrar como empleado
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/users/registrar-empleado`,
+          `https://rheaf-production.up.railway.app/api/users/registrar-empleado`,
           {
             id_usuario: user.id,
             id_negocio: user.negocio.id,
@@ -361,7 +361,7 @@ if (!descripcionRegex.test(descripcion)) {
       // Eliminar de empleado_negocio y disponibilidad_empleado
       try {
         const response = await axios.post(
-          `http://localhost:5000/api/users/eliminar-empleado`,
+          `https://rheaf-production.up.railway.app/api/users/eliminar-empleado`,
           {
             id_usuario: user.id,
             id_negocio: user.negocio.id,
@@ -402,7 +402,7 @@ if (!descripcionRegex.test(descripcion)) {
   
       // Enviar solicitud al backend
       const response = await axios.post(
-        `http://localhost:5000/api/users/guardar-disponibilidad`,
+        `https://rheaf-production.up.railway.app/api/users/guardar-disponibilidad`,
         {
           id_usuario: user.id,
           disponibilidad,

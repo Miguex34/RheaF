@@ -25,7 +25,7 @@ const RegistroCliente = ({ closeModal, setAuth }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://rheaf-production.up.railway.app/api/clientes/register', formData);
+      const response = await axios.post('https://rheaf-production.up.railway.app/api/clientes/register', formData);
 
       // Guarda el token en localStorage
       localStorage.setItem('token', response.data.token);

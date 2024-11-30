@@ -24,7 +24,7 @@ const Principal = () => {
   useEffect(() => {
     const fetchNegocios = async () => {
       try {
-        const response = await axios.get('http://rheaf-production.up.railway.app/api/negocios/completos');
+        const response = await axios.get('https://rheaf-production.up.railway.app/api/negocios/completos');
         const negociosFiltrados = response.data.filter((negocio) => 
           negocio.nombre && negocio.telefono && negocio.direccion && negocio.categoria
         );

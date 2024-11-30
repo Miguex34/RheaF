@@ -10,7 +10,7 @@ const Modal = ({ closeModal }) => {
     const token = localStorage.getItem('token'); // Obtener el token de localStorage
 
     try {
-      const response = await fetch('http://rheaf-production.up.railway.app/api/empleados/crear', { //ruta de crear empleado
+      const response = await fetch('https://rheaf-production.up.railway.app/api/empleados/crear', { //ruta de crear empleado
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

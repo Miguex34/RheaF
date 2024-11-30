@@ -31,7 +31,7 @@ const Resumen = () => {
         };
 
         try {
-            const response = await axios.post('http://rheaf-production.up.railway.app/api/reserva-horario/reservar', reservaData);
+            const response = await axios.post('https://rheaf-production.up.railway.app/api/reserva-horario/reservar', reservaData);
             console.log('Reserva confirmada:', response.data);
 
             alert('Reserva confirmada con éxito.');

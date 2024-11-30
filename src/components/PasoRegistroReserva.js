@@ -66,7 +66,7 @@ const PasoRegistroReserva = () => {
         if (!formData.email) return;
 
         try {
-            const response = await axios.get(`http://rheaf-production.up.railway.app/api/clientes/verificar-correo`, {
+            const response = await axios.get(`https://rheaf-production.up.railway.app/api/clientes/verificar-correo`, {
                 params: { email: formData.email },
             });
             if (response.data.registrado) {

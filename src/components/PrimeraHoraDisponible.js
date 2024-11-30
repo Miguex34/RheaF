@@ -40,7 +40,7 @@ const PrimeraHoraDisponible = ({ negocioId, servicioId }) => {
         }
 
         axios
-            .get(`http://rheaf-production.up.railway.app/api/reserva-horario/disponibilidad/general/${negocioId}/${servicioId}`)
+            .get(`https://rheaf-production.up.railway.app/api/reserva-horario/disponibilidad/general/${negocioId}/${servicioId}`)
             .then((response) => {
                 const { negocio, servicio, diasDisponibles } = response.data;
                 setDiasDisponibles(diasDisponibles);

@@ -66,7 +66,7 @@ const FormularioSoporte = () => {
         return;
       }
 
-      const response = await axios.get('http://rheaf-production.up.railway.app/api/soportes/tickets', {
+      const response = await axios.get('https://rheaf-production.up.railway.app/api/soportes/tickets', {
         headers: { Authorization: `Bearer ${token}` },
       });
 

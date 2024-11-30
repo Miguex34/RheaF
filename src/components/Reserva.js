@@ -16,7 +16,7 @@ const Reserva = () => {
 
   const cargarEmpleados = useCallback(async () => {
     try {
-      const response = await axios.get(`http://rheaf-production.up.railway.app/api/empleados?negocioId=${negocioId}&servicioId=${servicioId}`);
+      const response = await axios.get(`https://rheaf-production.up.railway.app/api/empleados?negocioId=${negocioId}&servicioId=${servicioId}`);
       setEmpleadosDisponibles(response.data);
     } catch (error) {
       console.error('Error al cargar empleados disponibles:', error);
@@ -55,7 +55,7 @@ const Reserva = () => {
         id_empleado: selectedEmpleado,
         cliente: clienteInfo,
       };
-      await axios.post('http://rheaf-production.up.railway.app/api/reservas', reserva);
+      await axios.post('https://rheaf-production.up.railway.app/api/reservas', reserva);
       alert('Reserva confirmada con éxito.');
       cerrarModalReserva();
     } catch (error) {

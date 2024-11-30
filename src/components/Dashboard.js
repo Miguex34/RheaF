@@ -40,7 +40,7 @@ const Dashboard = () => {
       if (!token) return;
 
       try {
-        const response = await axios.get('http://rheaf-production.up.railway.app/api/reservas/empleados', {
+        const response = await axios.get('https://rheaf-production.up.railway.app/api/reservas/empleados', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -62,7 +62,7 @@ const Dashboard = () => {
       if (!token) return;
 
       try {
-        const response = await axios.get(`http://rheaf-production.up.railway.app/api/reservas/reservas-por-fecha?rango=${rango}`, {
+        const response = await axios.get(`https://rheaf-production.up.railway.app/api/reservas/reservas-por-fecha?rango=${rango}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -94,7 +94,7 @@ const Dashboard = () => {
       if (!token) return;
 
       try {
-        const response = await axios.get('http://rheaf-production.up.railway.app/api/reservas/reservas-por-mes', {
+        const response = await axios.get('https://rheaf-production.up.railway.app/api/reservas/reservas-por-mes', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
