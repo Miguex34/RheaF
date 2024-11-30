@@ -39,7 +39,7 @@ const Cuenta = () => {
   const [logoUrl, setLogoUrl] = useState('');
   const [realizaServicios, setRealizaServicios] = useState(false); // Estado del checkbox
   const [disponibilidad, setDisponibilidad] = useState([]); // 
-  const [isSavingDisponibilidad, setIsSavingDisponibilidad] = useState(false);
+  const [isSavingDisponibilidad] = useState(false);
 
   // Obtener el usuario logeado y su negocio al cargar el componente
   useEffect(() => {

@@ -41,7 +41,6 @@ const FormularioSoporte = () => {
       }
 
     try {
-      const token = localStorage.getItem('token');
       const formDataToSend = new FormData();
       formDataToSend.append('asunto', formData.asunto);
       formDataToSend.append('descripcion', formData.descripcion);

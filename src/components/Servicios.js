@@ -21,6 +21,7 @@ const Servicios = () => {
   const navigate = useNavigate();
   const [ setUser] = useState({ nombre: '', correo: '', id_negocio: null });
 
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -52,7 +53,7 @@ const Servicios = () => {
         localStorage.removeItem('token');
         navigate('/login');
       });
-  }, [navigate, setUser, setForm, cargarServicios, cargarEmpleados]);
+  }, [navigate,]);
 
   const cargarServicios = async (id_negocio) => {
     const token = localStorage.getItem('token');

@@ -21,7 +21,7 @@ useEffect(() => {
     console.warn("Usuario no autorizado o datos no encontrados.");
     window.location.href = '/login';
   }
-}, []);
+}, [setUser]);
 
   const cargarServiciosEmpleado = async (idEmpleado) => {
     try {
