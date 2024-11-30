@@ -100,7 +100,14 @@ const syncDatabase = async () => {
 syncDatabase();
 
 // Iniciar el servidor en el puerto configurado
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log('Conexión a la base de datos exitosa');
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en el puerto ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Error al conectar con la base de datos:', error);
+  });
