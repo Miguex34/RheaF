@@ -25,7 +25,7 @@ useEffect(() => {
 
   const cargarServiciosEmpleado = async (idEmpleado) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/servicios/empleado/${idEmpleado}/servicios`, {
+      const response = await axios.get(`http://rheaf-production.up.railway.app/api/servicios/empleado/${idEmpleado}/servicios`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setServicios(response.data);

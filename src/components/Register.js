@@ -23,7 +23,7 @@ const Register = () => {
   // Función para buscar direcciones en Nominatim
   const searchAddress = async (query) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/address?query=${encodeURIComponent(query)}`);
+      const response = await fetch(`http://rheaf-production.up.railway.app/api/address?query=${encodeURIComponent(query)}`);
       const data = await response.json();
       setSuggestions(data);
     } catch (error) {
@@ -80,7 +80,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', formData);
+      const response = await axios.post('http://rheaf-production.up.railway.app/api/users/register', formData);
       const { token } = response.data;
       localStorage.setItem('token', token);
       navigate('/panel-reservas');

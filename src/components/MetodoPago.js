@@ -58,7 +58,7 @@ const MetodoPago = () => {
             let clienteId = sessionStorage.getItem('clienteId'); // Cambiado a let
             if (!clienteId && reservaInvitado) {
                 // Crear cliente si es invitado
-                const responseCliente = await axios.post('http://localhost:5000/api/clientes/invitado', {
+                const responseCliente = await axios.post('http://rheaf-production.up.railway.app/api/clientes/invitado', {
                     nombre: reservaInvitado.nombre,
                     email: reservaInvitado.email,
                     telefono: reservaInvitado.telefono || null,
@@ -71,7 +71,7 @@ const MetodoPago = () => {
             }
     
             // Crear reserva
-            await axios.post('http://localhost:5000/api/reserva-horario/crear', {
+            await axios.post('http://rheaf-production.up.railway.app/api/reserva-horario/crear', {
                 clienteId,
                 negocioId: negocioSeleccionado.id,
                 servicioId: servicioSeleccionado.id,

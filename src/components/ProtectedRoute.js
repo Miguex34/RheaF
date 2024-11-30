@@ -16,7 +16,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
       try {
         // Validar el token haciendo una solicitud al backend
-        const response = await axios.get('http://localhost:5000/api/users/me', {
+        const response = await axios.get('http://rheaf-production.up.railway.app/api/users/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setIsAuthenticated(true);

@@ -16,7 +16,7 @@ const PanelReservas = () => {
         const obtenerReservas = async () => {
             try {
                 const negocioId = 1; // Cambia este valor por el ID del negocio correspondiente
-                const response = await axios.get(`http://localhost:5000/api/panel-reservas/${negocioId}`);
+                const response = await axios.get(`http://rheaf-production.up.railway.app/api/panel-reservas/${negocioId}`);
                 const { reservas } = response.data;
 
                 setReservas(reservas);

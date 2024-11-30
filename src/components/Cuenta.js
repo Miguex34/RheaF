@@ -52,7 +52,7 @@ const Cuenta = () => {
     const fetchDisponibilidad = async (id_usuario) => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users/disponibilidad/${id_usuario}`,
+          `http://rheaf-production.up.railway.app/api/users/disponibilidad/${id_usuario}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

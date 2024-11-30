@@ -44,7 +44,7 @@ const Calendario = () => {
     if (!token) return;
 
     axios
-      .get('http://localhost:5000/api/users/me', {
+      .get('http://rheaf-production.up.railway.app/api/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -59,7 +59,7 @@ const Calendario = () => {
 
   const cargarEventos = async (id_negocio, token) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/eventos/negocio/${id_negocio}`, {
+      const response = await axios.get(`http://rheaf-production.up.railway.app/api/eventos/negocio/${id_negocio}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const eventosConFechaCorrecta = response.data.map(evento => ({
@@ -129,7 +129,7 @@ const Calendario = () => {
         id_usuario_creador: user.id,
       };
 
-      const response = await axios.post('http://localhost:5000/api/eventos', formattedEvent, {
+      const response = await axios.post('http://rheaf-production.up.railway.app/api/eventos', formattedEvent, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -153,7 +153,7 @@ const Calendario = () => {
   const handleDeleteEvent = async (eventId) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/api/eventos/${eventId}`, {
+      await axios.delete(`http://rheaf-production.up.railway.app/api/eventos/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Evento eliminado con éxito");

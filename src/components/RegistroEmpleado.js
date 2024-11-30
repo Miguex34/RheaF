@@ -78,7 +78,7 @@ const RegistroEmpleado = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        await axios.post(`http://localhost:5000/api/empleados/registro/${token}`, formData);
+        await axios.post(`http://rheaf-production.up.railway.app/api/empleados/registro/${token}`, formData);
         alert('Registro completado con éxito');
         navigate('/login');
       } catch (error) {

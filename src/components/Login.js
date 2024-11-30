@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
   
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', {
+      const response = await axios.post('http://rheaf-production.up.railway.app/api/users/login', {
         correo,
         contraseña,
       });

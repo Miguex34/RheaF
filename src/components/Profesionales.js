@@ -11,7 +11,7 @@ const Profesionales = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:5000/api/users/me', {
+        const response = await axios.get('http://rheaf-production.up.railway.app/api/users/me', {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -35,7 +35,7 @@ const Profesionales = () => {
   const cargarEmpleados = async (id_negocio) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get(`http://localhost:5000/api/empleados/negocio/${id_negocio}/empleados`, {
+      const response = await axios.get(`http://rheaf-production.up.railway.app/api/empleados/negocio/${id_negocio}/empleados`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Filtrar usuarios que tienen `telefono` no nulo (excluye usuarios temporales)

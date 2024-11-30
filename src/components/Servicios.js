@@ -30,7 +30,7 @@ const Servicios = () => {
     }
   
     axios
-      .get('http://localhost:5000/api/users/me', {
+      .get('http://rheaf-production.up.railway.app/api/users/me', {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -58,7 +58,7 @@ const Servicios = () => {
   const cargarServicios = async (id_negocio) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get(`http://localhost:5000/api/servicios/negocio/${id_negocio}`, {
+      const response = await axios.get(`http://rheaf-production.up.railway.app/api/servicios/negocio/${id_negocio}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setServicios(response.data);
@@ -70,7 +70,7 @@ const Servicios = () => {
   const cargarEmpleados = async (id_negocio) => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get(`http://localhost:5000/api/empleados/negocio/${id_negocio}/empleados`, {
+      const response = await axios.get(`http://rheaf-production.up.railway.app/api/empleados/negocio/${id_negocio}/empleados`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEmpleados(response.data);
@@ -133,8 +133,8 @@ const Servicios = () => {
     const token = localStorage.getItem('token');
     try {
       const url = editingId
-        ? `http://localhost:5000/api/servicios/${editingId}`
-        : 'http://localhost:5000/api/servicios';
+        ? `http://rheaf-production.up.railway.app/api/servicios/${editingId}`
+        : 'http://rheaf-production.up.railway.app/api/servicios';
       const method = editingId ? 'put' : 'post';
       await axios[method](
         url,
@@ -188,7 +188,7 @@ const Servicios = () => {
   const handleDelete = async (id) => {
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/api/servicios/${id}`, {
+      await axios.delete(`http://rheaf-production.up.railway.app/api/servicios/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       // Eliminar el servicio de la lista sin recargar todos los servicios

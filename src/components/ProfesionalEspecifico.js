@@ -25,11 +25,11 @@ const ProfesionalEspecifico = ({ negocioId, servicioId }) => {
         const fetchDatos = async () => {
             try {
                 const generalResponse = await axios.get(
-                    `http://localhost:5000/api/reserva-horario/disponibilidad/general/${negocioId}/${servicioId}`
+                    `http://rheaf-production.up.railway.app/api/reserva-horario/disponibilidad/general/${negocioId}/${servicioId}`
                 );
 
                 const empleadosResponse = await axios.get(
-                    `http://localhost:5000/api/reserva-horario/disponibilidad/empleados/${negocioId}/${servicioId}`
+                    `http://rheaf-production.up.railway.app/api/reserva-horario/disponibilidad/empleados/${negocioId}/${servicioId}`
                 );
 
                 const { negocio, servicio, diasDisponibles: dias } = generalResponse.data;
@@ -53,7 +53,7 @@ const ProfesionalEspecifico = ({ negocioId, servicioId }) => {
 
         try {
             const response = await axios.get(
-                `http://localhost:5000/api/reserva-horario/disponibilidad/empleado/${negocioId}/${servicioId}/${empleado.id}`
+                `http://rheaf-production.up.railway.app/api/reserva-horario/disponibilidad/empleado/${negocioId}/${servicioId}/${empleado.id}`
             );
             setDiasDisponibles(response.data.diasDisponibles || []); // Manejo seguro
         } catch (error) {
