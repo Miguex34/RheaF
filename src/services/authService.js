@@ -1,7 +1,7 @@
 // src/services/authService.js
 import axios from 'axios';
 
-const API_URL = 'http://rheaf-production.up.railway.app/api/users';
+const API_URL = 'https://rheaf-production.up.railway.app/api/users';
 
 export const login = async (correo, contraseña) => {
   const response = await axios.post(`${API_URL}/login`, { correo, contraseña });
