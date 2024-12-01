@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/database'); // Configuración de la base de 
+const sequelize = require('./config/database'); // Configuración de la base de datos
 const bodyParser = require('body-parser');
 const path = require('path');
 require('./models/associations'); // Asociaciones entre modelos
@@ -20,7 +20,6 @@ const Evento = require('./models/Evento');
 const EmpleadoServicio = require('./models/EmpleadoServicio.js');
 const Soporte = require('./models/Soporte');
 
-
 // Importamos las rutas
 const userRoutes = require('./routes/userRoutes');
 const negocioRoutes = require('./routes/negocioRoutes');
@@ -31,18 +30,33 @@ const pagoRoutes = require('./routes/pagoRoutes');
 const horarioRoutes = require('./routes/horarioRoutes');
 const disponibilidadEmpleadoRoutes = require('./routes/disponibilidadEmpleadoRoutes');
 const panelReservasRoutes = require('./routes/panelReservasRoutes');
-const authMiddleware = require('./middleware/authMiddleware');
 const eventoRoutes = require('./routes/eventoRoutes');
-const app = express();
-
-
-// Importa la ruta de reserva de horario
 const reservaHorarioRoutes = require('./routes/reservaHorarioRoutes');
 const proxyRoutes = require('./routes/proxyRoutes');
 const soporteRoutes = require('./routes/soporteRoutes');
 const clienteRoutes = require('./routes/clienteRoutes');
-// Middleware para procesar JSON y habilitar CORS
-app.use(cors());
+
+const app = express();
+
+// Configuración avanzada de CORS
+const allowedOrigins = [
+  'http://localhost:3000', // Desarrollo local
+  'https://rheaf-production.up.railway.app', // Dominio de producción en Railway
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Permitir solicitudes desde los dominios permitidos
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  credentials: true, // Permitir uso de cookies o headers de autorización
+}));
+
+// Middlewares globales
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -57,19 +71,20 @@ app.use('/api/disponibilidad-empleado', disponibilidadEmpleadoRoutes);
 app.use('/api/horarios', horarioRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/eventos', eventoRoutes);
-app.use('/api/reservas', authMiddleware, reservaRoutes);
-
-// Registrar las rutas de reserva de horarios con el prefijo /api/reserva-horario
 app.use('/api/reserva-horario', reservaHorarioRoutes);
-
-// Rutas para el panel de reservas
 app.use('/api/panel-reservas', panelReservasRoutes);
-
-// Servir archivos estáticos desde la carpeta 'uploads'
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/soportes', soporteRoutes);
 app.use('/api/clientes', clienteRoutes);
 app.use(proxyRoutes);
+
+// Middleware para manejar errores de CORS
+app.use((err, req, res, next) => {
+  if (err.message === 'No permitido por CORS') {
+    res.status(403).json({ error: 'Solicitud bloqueada por política CORS' });
+  } else {
+    next(err);
+  }
+});
 
 // Función asincrónica para sincronizar la base de datos en el orden correcto
 const syncDatabase = async () => {
