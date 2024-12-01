@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const sequelize = require('./config/database');
+const sequelize = require('./config/database'); // Configuración de la base de 
 const bodyParser = require('body-parser');
 const path = require('path');
 require('./models/associations'); // Asociaciones entre modelos
 
-// Importación de modelos
+// Importa tus modelos explícitamente
 const Usuario = require('./models/Usuario');
 const Negocio = require('./models/Negocio');
 const Servicio = require('./models/Servicio');
@@ -20,7 +20,8 @@ const Evento = require('./models/Evento');
 const EmpleadoServicio = require('./models/EmpleadoServicio.js');
 const Soporte = require('./models/Soporte');
 
-// Importación de rutas
+
+// Importamos las rutas
 const userRoutes = require('./routes/userRoutes');
 const negocioRoutes = require('./routes/negocioRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
@@ -30,20 +31,22 @@ const pagoRoutes = require('./routes/pagoRoutes');
 const horarioRoutes = require('./routes/horarioRoutes');
 const disponibilidadEmpleadoRoutes = require('./routes/disponibilidadEmpleadoRoutes');
 const panelReservasRoutes = require('./routes/panelReservasRoutes');
+const authMiddleware = require('./middleware/authMiddleware');
+const eventoRoutes = require('./routes/eventoRoutes');
+const app = express();
+
+
+// Importa la ruta de reserva de horario
 const reservaHorarioRoutes = require('./routes/reservaHorarioRoutes');
 const proxyRoutes = require('./routes/proxyRoutes');
 const soporteRoutes = require('./routes/soporteRoutes');
 const clienteRoutes = require('./routes/clienteRoutes');
-
-const authMiddleware = require('./middleware/authMiddleware');
-const app = express();
-
-// Middleware
+// Middleware para procesar JSON y habilitar CORS
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 
-// Registro de rutas API
+// Registrar las rutas
 app.use('/api/users', userRoutes);
 app.use('/api/negocios', negocioRoutes);
 app.use('/api/reservas', reservaRoutes);
@@ -52,26 +55,23 @@ app.use('/api/servicios', servicioRoutes);
 app.use('/api/pagos', pagoRoutes);
 app.use('/api/disponibilidad-empleado', disponibilidadEmpleadoRoutes);
 app.use('/api/horarios', horarioRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/eventos', eventoRoutes);
+app.use('/api/reservas', authMiddleware, reservaRoutes);
+
+// Registrar las rutas de reserva de horarios con el prefijo /api/reserva-horario
 app.use('/api/reserva-horario', reservaHorarioRoutes);
+
+// Rutas para el panel de reservas
 app.use('/api/panel-reservas', panelReservasRoutes);
+
+// Servir archivos estáticos desde la carpeta 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/soportes', soporteRoutes);
 app.use('/api/clientes', clienteRoutes);
 app.use(proxyRoutes);
 
-// Archivos estáticos
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Redirige rutas no API al frontend
-app.get('*', (req, res, next) => {
-  if (req.originalUrl.startsWith('/api')) {
-    return next(); // Ignora rutas de la API
-  }
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-// Sincronización de base de datos
+// Función asincrónica para sincronizar la base de datos en el orden correcto
 const syncDatabase = async () => {
   try {
     await sequelize.authenticate();
@@ -96,9 +96,10 @@ const syncDatabase = async () => {
   }
 };
 
+// Iniciar la sincronización de la base de datos
 syncDatabase();
 
-// Iniciar el servidor
+// Iniciar el servidor en el puerto configurado
 const PORT = process.env.PORT || 8080;
 sequelize.sync({ alter: true })
   .then(() => {
